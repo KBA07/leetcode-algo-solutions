@@ -62,3 +62,39 @@ class Solution(object):
                     break
 
         return pref
+
+"""
+Runtime: 16 ms, faster than 96.36% of Python online submissions for Longest Common Prefix.
+Memory Usage: 12.7 MB, less than 80.23% of Python online submissions for Longest Common Prefix.
+"""
+
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        longest = ""
+
+        if not strs:
+            return longest
+
+        current_pointer = 0
+        first_word = strs[0]
+
+        for letter in first_word:
+
+            for index in range(1, len(strs)):
+                current_word = strs[index]
+                if current_pointer > len(current_word) - 1:
+                    return longest
+
+                comp_letter = current_word[current_pointer]
+
+                if comp_letter != letter:
+                    return longest
+
+            longest += letter
+            current_pointer += 1
+
+        return longest
