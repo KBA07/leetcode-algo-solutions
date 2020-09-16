@@ -56,7 +56,31 @@ class Solution(object):
             nums[last] = nums[index]
             last -= 1
 
-
         for index in range(len(rotate_list) -1, -1, -1):
             nums[last] = rotate_list[index]
             last -= 1
+
+
+"""
+Runtime: 60 ms, faster than 48.10% of Python online submissions for Rotate Array.
+Memory Usage: 13.1 MB, less than 52.64% of Python online submissions for Rotate Array.
+"""
+
+class Solution(object):
+    def rotate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        def reverse(left, right):
+            while left <= right:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1
+                right -= 1
+
+        nums_len = len(nums)
+        k = k % nums_len
+        reverse(0, nums_len - 1)
+        reverse(0, k-1)
+        reverse(k, nums_len - 1)
