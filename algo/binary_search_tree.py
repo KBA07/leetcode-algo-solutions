@@ -10,6 +10,19 @@ class BST(object):
         self.root = root
         self.count = 0
 
+    def lookup(self, value):
+        checker = self.root
+
+        while checker:
+            if value == checker.value:
+                return True
+            elif value < checker.value:
+                checker = checker.left
+            else:
+                checker = checker.right
+
+        return False
+
     def insert(self, value):
         node = BSTNode(value)
         if not self.count:
@@ -40,3 +53,9 @@ bst.insert(20)
 bst.insert(170)
 bst.insert(15)
 bst.insert(1)
+
+print(bst.lookup(1))
+print(bst.lookup(1000))
+print(bst.lookup(6))
+print(bst.lookup('xxx'))
+print(bst.lookup(170))
