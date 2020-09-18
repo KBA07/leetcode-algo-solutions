@@ -27,3 +27,24 @@ class Solution(object):
             current = head
 
         return previous
+
+"""
+Runtime: 16 ms, faster than 98.58% of Python online submissions for Reverse Linked List.
+Memory Usage: 19.5 MB, less than 5.05% of Python online submissions for Reverse Linked List.
+"""
+class Solution(object):
+
+    def reverseList(self, head):
+
+        def helper(right, current):
+
+            if not right:
+                return current
+
+            temp = right.next
+            right.next = current
+
+
+            return helper(temp, right)
+
+        return helper(head, None)
