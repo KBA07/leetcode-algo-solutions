@@ -45,3 +45,25 @@ class Solution:
                 max_element_value = value
                 
         return max_element
+
+"""
+Runtime: 160 ms, faster than 87.55% of Python3 online submissions for Majority Element.
+Memory Usage: 15.5 MB, less than 52.09% of Python3 online submissions for Majority Element.
+"""
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        me = None
+        count = 0
+        
+        for num in nums:
+            
+            if count == 0:
+                me = num
+                
+            if num != me:
+                count -= 1
+            else:
+                count += 1
+        
+        return me
