@@ -51,3 +51,16 @@ class Solution:
         for num in nums:
             sumOfN -= num
         return sumOfN
+
+"""
+XOR Approach
+Runtime: 128 ms, faster than 73.02% of Python3 online submissions for Missing Number.
+Memory Usage: 15.3 MB, less than 80.27% of Python3 online submissions for Missing Number.
+"""
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        sumOfN = len(nums)
+        for index, num in enumerate(nums):
+            sumOfN ^= index ^ num
+        return sumOfN
