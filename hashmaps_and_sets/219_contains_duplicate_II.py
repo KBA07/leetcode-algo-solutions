@@ -38,14 +38,19 @@ Submissions
 877,108
 """
 
-# Time limit exceeded
+"""
+Runtime: 592 ms, faster than 5.27% of Python3 online submissions for Contains Duplicate II.
+Memory Usage: 28.5 MB, less than 5.41% of Python3 online submissions for Contains Duplicate II.
+"""
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
         
-        for outer_index in range(len(nums)):
-            for inner_index in range(outer_index + 1, len(nums)):
-                if nums[outer_index] == nums[inner_index]:
-                    if abs(outer_index - inner_index) <= k:
-                        return True
-                    
+        nums_dict = {}
+        for index, num in enumerate(nums):
+            
+            if num in nums_dict:
+                if abs(index - nums_dict[num]) <= k:
+                    return True
+                
+            nums_dict[num] = index
         return False
