@@ -69,5 +69,19 @@ class Solution:
                 char_dict[char] -= 1
         
         return next(iter(char_dict))
+
+"""
+Runtime: 28 ms, faster than 95.25% of Python3 online submissions for Find the Difference.
+Memory Usage: 14.3 MB, less than 59.20% of Python3 online submissions for Find the Difference.
+"""
+class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+        result = 0
+        index = -1
+        for index in range(len(s)):
+            result ^= ord(s[index]) ^ ord(t[index])
         
+        result ^= ord(t[index+1])
         
+        return chr(result)
+  
