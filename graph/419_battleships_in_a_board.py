@@ -67,3 +67,27 @@ class Solution:
         self.findbattleship(board, row_index, col_index - 1)
         
         return 1
+
+"""
+Runtime: 72 ms, faster than 71.52% of Python3 online submissions for Battleships in a Board.
+Memory Usage: 14.9 MB, less than 53.88% of Python3 online submissions for Battleships in a Board.
+"""
+class Solution:
+    def countBattleships(self, board: List[List[str]]) -> int:
+        battelship_count = 0
+        for row_index in range(len(board)):
+            for col_index in range(len(board[0])):
+                if board[row_index][col_index] == '.':
+                    continue
+                
+                # At this point we will only have X
+                
+                if row_index > 0 and board[row_index - 1][col_index] == 'X': # Check if previous vertical entry had X, then it is the same battleship
+                    continue
+                
+                if col_index > 0 and board[row_index][col_index - 1] == 'X': # Check if previous horizontal entry had X, then it is the same battleship
+                    continue
+                
+                battelship_count += 1
+                
+        return battelship_count
