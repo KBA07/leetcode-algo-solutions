@@ -46,3 +46,125 @@ class Solution:
         heapq.heapify(nums)
         
         return heapq.nlargest(k, nums)[-1]
+
+"""
+Time limit exceeded
+"""
+class Solution:
+    def findKthLargest(self, nums, k):
+        self.data = ["#"]
+        self.count = 0
+        
+        for num in nums:
+            self.insert(num)
+        
+        for _ in range(k):
+            val = self.delete()
+            
+        return val
+    
+    def insert(self, val):
+        self.data.append(val)
+        self.count += 1
+        self.heapify(sequential=False)
+    
+    def delete(self):
+        self.data[1], self.data[-1] = self.data[-1], self.data[1]
+        val = self.data.pop()
+        self.count -= 1
+        self.heapify()
+        return val
+    
+    def isLeaf(self, pos):
+        return 2 * pos > self.count
+    
+    def heapify(self, sequential=True):
+        pos = self.count
+        
+        while pos > 0:
+            if not self.isLeaf(pos):
+                left = 2 * pos
+                right = 2 * pos + 1
+
+                index = left
+                if right <= self.count and self.data[right] > self.data[left]:
+                    index = right
+
+                if self.data[pos] < self.data[index]:
+                    self.data[pos], self.data[index] = self.data[index], self.data[pos]
+
+            if sequential:
+                pos -= 1  
+            else:
+                pos = pos // 2    
+
+"""
+Runtime: 3228 ms, faster than 5.02% of Python3 online submissions for Kth Largest Element in an Array.
+Memory Usage: 15.1 MB, less than 42.91% of Python3 online submissions for Kth Largest Element in an Array.
+"""
+class Solution:
+    def findKthLargest(self, nums, k):
+        self.data = ["#"]
+        self.count = 0
+        
+        for num in nums:
+            self.insert(num)
+        
+        for _ in range(k):
+            val = self.delete()
+            
+        return val
+    
+    def insert(self, val):
+        self.data.append(val)
+        self.count += 1
+        
+        self.heapifybottom(sequential=False)
+    
+    def delete(self):
+        self.data[1], self.data[-1] = self.data[-1], self.data[1]
+        val = self.data.pop()
+        self.count -= 1
+        self.heapifyabove(1) # costly call, let's heapify from above
+        return val
+    
+    def isLeaf(self, pos):
+        return 2 * pos > self.count
+    
+    def heapifyabove(self, pos):
+        # print(pos, self.count)
+        while pos <= self.count:
+            if not self.isLeaf(pos):
+                left = 2 * pos
+                right = 2 * pos + 1
+            
+                index = left
+                if right <= self.count and self.data[right] > self.data[left]:
+                    index = right
+
+                if self.data[pos] < self.data[index]:
+                        self.data[pos], self.data[index] = self.data[index], self.data[pos]
+                        pos = index
+                        continue
+            pos =  pos + 1
+            
+            
+    def heapifybottom(self, sequential=True):
+        pos = self.count
+        
+        while pos > 0:
+            if not self.isLeaf(pos):
+                left = 2 * pos
+                right = 2 * pos + 1
+
+                index = left
+                if right <= self.count and self.data[right] > self.data[left]:
+                    index = right
+
+                if self.data[pos] < self.data[index]:
+                    self.data[pos], self.data[index] = self.data[index], self.data[pos]
+
+            if sequential:
+                pos -= 1  
+            else:
+                pos = pos // 2    
