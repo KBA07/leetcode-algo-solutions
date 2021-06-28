@@ -48,3 +48,26 @@ class Solution(object):
             return helper(temp, right)
 
         return helper(head, None)
+
+"""
+Runtime: 32 ms, faster than 87.80% of Python3 online submissions for Reverse Linked List.
+Memory Usage: 18.9 MB, less than 17.19% of Python3 online submissions for Reverse Linked List.
+"""
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        
+        if not head or not head.next:
+            return head
+        
+        rest = self.reverseList(head.next)
+        
+        head.next.next = head
+        head.next = None
+        
+        return rest
