@@ -64,4 +64,27 @@ class Solution:
             counter -= 1
         
         return rev_result[::-1]
+
+"""
+Runtime: 64 ms, faster than 46.85% of Python3 online submissions for License Key Formatting.
+Memory Usage: 14.9 MB, less than 41.86% of Python3 online submissions for License Key Formatting.
+"""    
+class Solution:
+    def licenseKeyFormatting(self, s: str, k: int) -> str:
+        rev_result = ''
+        
+        counter = 0
+        for index in range(len(s) - 1, -1, -1):
+            
+            if s[index] == '-':
+                continue
+            
+            if counter > k-1:
+                counter = 0
+                rev_result += '-'
+            
+            rev_result += s[index].upper()
+            counter += 1
+        
+        return rev_result[::-1]
             
