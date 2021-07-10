@@ -65,3 +65,20 @@ class Solution:
                 if word[index].isupper(): return False
                 
         return True
+
+"""
+Runtime: 32 ms, faster than 60.06% of Python3 online submissions for Detect Capital.
+Memory Usage: 14 MB, less than 90.98% of Python3 online submissions for Detect Capital.
+"""
+class Solution:
+    def detectCapitalUse(self, word: str) -> bool:
+        capital_count = 0
+        
+        for char in word:
+            if char.isupper():
+                capital_count += 1
+        
+        if capital_count == len(word) or not capital_count or (capital_count == 1 and word[0].isupper()):
+            return True
+        
+        return False
