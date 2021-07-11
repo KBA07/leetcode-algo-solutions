@@ -38,11 +38,11 @@ Submissions
 1,905,298
 """
 
+# DFS
 """
 Runtime: 32 ms, faster than 82.21% of Python3 online submissions for Symmetric Tree.
 Memory Usage: 14.2 MB, less than 92.14% of Python3 online submissions for Symmetric Tree.
 """
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -65,4 +65,39 @@ class Solution:
             return False
         
         return self.helper(first.left, second.right) and self.helper(first.right, second.left)
+
+# BFS
+"""
+Runtime: 52 ms, faster than 9.32% of Python3 online submissions for Symmetric Tree.
+Memory Usage: 14.2 MB, less than 77.87% of Python3 online submissions for Symmetric Tree.
+""" 
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if not root: return 0
+        
+        queue = [(root.left, root.right)]
+        
+        while queue:
+            p, q = queue.pop(0)
+            
+            if not p and not q:
+                continue
+            
+            if not p or not q:
+                return False
+            
+            if p.val != q.val:
+                return False
+            
+            queue.append((p.left, q.right))
+            queue.append((p.right, q.left))
+        
+        return True
         
