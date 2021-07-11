@@ -42,11 +42,11 @@ Submissions
 1,393,207
 """
 
+# DFS
 """
 Runtime: 32 ms, faster than 60.25% of Python3 online submissions for Same Tree.
 Memory Usage: 14.3 MB, less than 61.44% of Python3 online submissions for Same Tree.
 """
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -62,3 +62,35 @@ class Solution:
             return False
              
         return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right) and True
+
+# BFS
+"""
+Runtime: 44 ms, faster than 10.48% of Python3 online submissions for Same Tree.
+Memory Usage: 14.2 MB, less than 85.52% of Python3 online submissions for Same Tree.
+"""
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        queue = [(p, q)]
+        
+        while queue:
+            first, second = queue.pop(0)
+            
+            if not first and not second:
+                continue
+            
+            if not first or not second:
+                return False
+            
+            if first.val != second.val:
+                return False
+            
+            queue.append((first.left, second.left))
+            queue.append((first.right, second.right))
+        
+        return True
