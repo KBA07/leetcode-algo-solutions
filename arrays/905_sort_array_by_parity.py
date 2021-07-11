@@ -54,4 +54,3 @@ class Solution:
             nums[start], nums[end] = nums[end], nums[start]
         
         return nums
-        
