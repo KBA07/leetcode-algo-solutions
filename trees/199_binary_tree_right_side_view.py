@@ -70,3 +70,34 @@ class Solution:
                 answer.append(queue[-1].val)
         
         return answer
+
+"""
+Runtime: 56 ms, faster than 6.45% of Python3 online submissions for Binary Tree Right Side View.
+Memory Usage: 14 MB, less than 93.16% of Python3 online submissions for Binary Tree Right Side View.
+"""
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def rightSideView(self, root: TreeNode) -> List[int]:
+        if not root: return root
+        
+        queue = [root]
+        answer = []
+        while queue:
+            size = len(queue)
+            for index in range(size):
+                node = queue.pop(0)
+                
+                if index == size - 1:
+                    answer.append(node.val)
+                
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+        return answer
