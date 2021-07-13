@@ -45,3 +45,40 @@ class Solution(object):
 
         helper(nums[:], 0, answer)
         return answer
+
+"""
+Runtime: 84 ms, faster than 6.33% of Python3 online submissions for Subsets.
+Memory Usage: 14.5 MB, less than 49.90% of Python3 online submissions for Subsets.
+"""
+class Solution:
+    
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        subsets = []
+        # answer.append(nums)
+        
+        def helper(subsets, answer, index, nums):
+            subsets.append(answer[:])
+
+            for i in range(index, len(nums)):
+                answer.append(nums[i])
+                helper(subsets, answer, i + 1, nums)
+                answer.pop()
+        
+        helper(subsets, [], 0, nums)
+        return subsets
+
+
+"""
+Runtime: 60 ms, faster than 6.33% of Python3 online submissions for Subsets.
+Memory Usage: 14.6 MB, less than 18.43% of Python3 online submissions for Subsets.
+"""
+class Solution:
+    
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        subsets = [[]]
+        # answer.append(nums)
+        
+        for num in nums:
+            subsets += [subset + [num] for subset in subsets]
+        
+        return subsets
