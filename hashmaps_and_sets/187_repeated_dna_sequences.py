@@ -63,4 +63,25 @@ class Solution:
                 res.append(key)
         
         return res
+
+"""
+Runtime: 60 ms, faster than 81.75% of Python3 online submissions for Repeated DNA Sequences.
+Memory Usage: 26.3 MB, less than 80.89% of Python3 online submissions for Repeated DNA Sequences.
+"""
+class Solution:
+    def findRepeatedDnaSequences(self, s: str) -> List[str]:
+        if len(s) < 10:
+            return []
+        
+        word_map = set()
+        result = set()
+        for index in range(len(s) - 9):
+            sub_str = s[index: index+10]
+            
+            if sub_str in word_map:
+                result.add(sub_str)
+            else:
+                word_map.add(sub_str)
+        
+        return list(result)
         
