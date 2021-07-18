@@ -145,3 +145,20 @@ class Solution:
             t_point -= 1
         
         return True
+"""
+Runtime: 32 ms, faster than 65.30% of Python3 online submissions for Backspace String Compare.
+Memory Usage: 14.2 MB, less than 78.39% of Python3 online submissions for Backspace String Compare.
+"""
+
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        def helper(word):
+            stack = []
+            for char in word:
+                if char != '#':
+                    stack.append(char)
+                elif stack:
+                    stack.pop()
+            return ''.join(stack)
+        
+        return helper(s) == helper(t)
