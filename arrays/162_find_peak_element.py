@@ -58,3 +58,25 @@ class Solution(object):
                 right = mid
         
         return left
+
+"""
+Runtime: 36 ms, faster than 98.58% of Python3 online submissions for Find Peak Element.
+Memory Usage: 14.3 MB, less than 72.43% of Python3 online submissions for Find Peak Element.
+"""
+
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        
+        def helper(array, start, end):
+            if start == end:
+                return start
+            
+            mid = (start + end) // 2
+            
+            if array[mid] < array[mid + 1]:
+                return helper(array, mid + 1, end)
+            
+            return helper(array, start, mid)
+        
+        return helper(nums, 0, len(nums) - 1)
+        
