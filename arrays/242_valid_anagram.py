@@ -53,3 +53,27 @@ class Solution:
                 char_dict.pop(char)
         
         return True
+
+
+"""
+Runtime: 72 ms, faster than 17.20% of Python3 online submissions for Valid Anagram.
+Memory Usage: 14.5 MB, less than 80.13% of Python3 online submissions for Valid Anagram.
+
+"""
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        char_list = [0] * 26
+        
+        for index in range(max(len(s), len(t))):
+            if index < len(s):
+                char_list[ord(s[index]) - ord('a')] += 1
+            if index < len(t):
+                char_list[ord(t[index]) - ord('a')] -= 1
+            
+        
+        for val in char_list:
+            if val != 0:
+                return False
+        
+        return True
+        

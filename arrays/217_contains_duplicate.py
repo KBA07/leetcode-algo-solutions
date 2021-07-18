@@ -43,3 +43,21 @@ class Solution:
             except KeyError:
                 nums_dict[number] = 1
         return False
+
+"""
+Runtime: 120 ms, faster than 64.80% of Python3 online submissions for Contains Duplicate.
+Memory Usage: 20.1 MB, less than 59.72% of Python3 online submissions for Contains Duplicate.
+"""
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        num_set = set()
+        
+        for num in nums:
+            if num not in num_set:
+                num_set.add(num)
+            else:
+                return True
+        
+        return False
+    
