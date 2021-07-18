@@ -66,3 +66,24 @@ class Solution:
             if not first == second == third:
                 # print(first, second, third)
                 return first ^ second ^ third
+
+
+"""
+Won't work for negative
+"""
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        nums.sort()
+        
+        result = 0
+        for index in range(32): # 32 bits
+            sum_bits = 0
+            
+            for inner_index in range(len(nums)):
+                sum_bits += nums[inner_index] % 2
+                nums[inner_index] = nums[inner_index] // 2
+                
+            
+            result = result | sum_bits % 3 << index
+        
+        return result
