@@ -54,4 +54,3 @@ class Solution:
             y = y >> 1
             
         return result
-
