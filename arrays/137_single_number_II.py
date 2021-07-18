@@ -47,3 +47,22 @@ class Solution:
             
         for key in nums_map:
             return key
+
+"""
+Runtime: 56 ms, faster than 80.14% of Python3 online submissions for Single Number II.
+Memory Usage: 15.8 MB, less than 82.12% of Python3 online submissions for Single Number II.
+"""
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        nums.sort()
+        
+        # print(nums)
+        for index in range(0, len(nums), 3):
+            # print(index)
+            first = nums[index]
+            second = nums[index + 1] if index + 1 < len(nums) else 0
+            third = nums[index + 2] if index + 2 < len(nums) else 0
+    
+            if not first == second == third:
+                # print(first, second, third)
+                return first ^ second ^ third
