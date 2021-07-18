@@ -52,4 +52,36 @@ class Solution:
                 result.add(num)
                 
         return list(result)
+
+
+"""
+Runtime: 48 ms, faster than 57.59% of Python3 online submissions for Intersection of Two Arrays.
+Memory Usage: 14.5 MB, less than 13.15% of Python3 online submissions for Intersection of Two Arrays.
+"""
+# Assuming that if the array is sorted, solve this on time - O(N) and space - O(1)
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1.sort()
+        nums2.sort()
         
+        i = 0
+        j = 0
+        result = []
+        while i < len(nums1) and j < len(nums2):
+            num1 = nums1[i]
+            num2 = nums2[j]
+            
+            if num1 == num2:
+                result.append(num1)
+                while i < len(nums1) and num1 == nums1[i]:
+                    i += 1
+                while j < len(nums2) and num2 == nums2[j]:
+                    j += 1
+                continue
+            
+            if num1 < num2:
+                i += 1
+            else:
+                j += 1
+        
+        return result
