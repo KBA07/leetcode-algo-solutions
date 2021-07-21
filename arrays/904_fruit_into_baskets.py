@@ -86,3 +86,27 @@ class Solution:
             count = max(count, j - i)  
         
         return count
+
+"""
+Runtime: 748 ms, faster than 78.36% of Python3 online submissions for Fruit Into Baskets.
+Memory Usage: 20.1 MB, less than 68.31% of Python3 online submissions for Fruit Into Baskets.
+"""
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        baskets = {}
+        
+        lastTree = 0
+        fruitCount = 0
+        for tree in range(len(fruits)):
+            if len(baskets) <= 2:
+                baskets[fruits[tree]] = tree
+            
+            if len(baskets) > 2:
+                lastTree = min(baskets.values())
+                baskets.pop(fruits[lastTree])
+                
+                lastTree += 1
+            
+            fruitCount = max(fruitCount, tree - lastTree + 1)
+        
+        return fruitCount
