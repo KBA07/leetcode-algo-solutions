@@ -71,4 +71,43 @@ class Solution:
             return False
         
         return self.flipEquiv(root1.left, root2.right) and self.flipEquiv(root1.right, root2.left) or self.flipEquiv(root1.left, root2.left) and self.flipEquiv(root1.right, root2.right)
+
+
+"""
+Runtime: 32 ms, faster than 70.65% of Python3 online submissions for Flip Equivalent Binary Trees.
+Memory Usage: 14.1 MB, less than 85.17% of Python3 online submissions for Flip Equivalent Binary Trees.
+"""
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def flipEquiv(self, root1: TreeNode, root2: TreeNode) -> bool:
+        def helper(root, val_list):
+            if not root:
+                return
+            
+            val_list.append(root.val)
+            
+            L = root.left.val if root.left else -1
+            R = root.right.val if root.right else -1
+            
+            if L < R:
+                helper(root.left, val_list)
+                helper(root.right, val_list)
+            else:
+                helper(root.right, val_list)
+                helper(root.left, val_list)
+            
+            val_list.append(None)
+            
+        
+        list1 = []
+        list2 = []
+        helper(root1, list1)
+        helper(root2, list2)
+        
+        return list1 == list2
                
