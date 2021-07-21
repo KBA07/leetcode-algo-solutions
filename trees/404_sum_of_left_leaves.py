@@ -85,4 +85,3 @@ class Solution:
             return root.left.val + self.sumOfLeftLeaves(root.right)
         
         return self.sumOfLeftLeaves(root.left) + self.sumOfLeftLeaves(root.right)
-
