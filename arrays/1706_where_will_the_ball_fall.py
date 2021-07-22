@@ -84,3 +84,28 @@ class Solution:
                 result[col] = ballCol
             
         return result
+
+
+
+
+class Solution:
+    def closedIsland(self, grid: List[List[int]]) -> int:
+        # self.answer = 0
+        
+        def dfs(grid, row, col):
+            if row < 0 or col < 0 or row >= len(grid) or col >= len(grid[0]):
+                return 0
+            
+            if grid[row][col] == 1: # Land seen
+                return 1
+            
+            grid[row][col] == 1
+            return dfs(grid, row + 1, col) and dfs(grid, row, col + 1) and dfs(grid, row, col - 1)
+        
+        answer = 0
+        for row_index in range(len(grid)):
+            for col_index in range(len(grid[0])):
+                if grid[row_index][col_index] == 0: # posibility of an island
+                    answer += dfs(grid, row_index, col_index)
+        
+        return answer
