@@ -71,4 +71,22 @@ class Solution:
                 Opt = target[index]
         
         return totalOpt
+
+"""
+Runtime: 848 ms, faster than 33.37% of Python3 online submissions for Minimum Number of Increments on Subarrays to Form a Target Array.
+Memory Usage: 25.5 MB, less than 91.45% of Python3 online submissions for Minimum Number of Increments on Subarrays to Form a Target Array.
+"""
+class Solution:
+    def minNumberOperations(self, target: List[int]) -> int:
+        dp = [0] * len(target)
+        
+        dp[0] = target[0]
+        
+        for index in range(1, len(target)):
+            if target[index] <= target[index - 1]:
+                dp[index] = dp[index - 1]
+            else:
+                dp[index] = dp[index-1] + target[index] - target[index - 1]
+        
+        return dp[-1]
         
