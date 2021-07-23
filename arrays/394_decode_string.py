@@ -87,3 +87,65 @@ class Solution:
             index += 1
         
         return ''.join(s)
+
+
+"""
+Runtime: 28 ms, faster than 81.80% of Python3 online submissions for Decode String.
+Memory Usage: 14.2 MB, less than 52.56% of Python3 online submissions for Decode String.
+"""
+class Solution:
+    def decodeString(self, s: str) -> str:
+        
+        stack = []
+        currentWord = ''
+        k = 0
+        for char in s:
+            
+            if char == '[':
+                stack.append([k, currentWord])
+                k = 0
+                currentWord = ''     
+            elif char == ']':
+                k, lastWord = stack.pop()
+                currentWord = lastWord + (k * currentWord)
+                k = 0
+            elif char.isdigit():
+                k = k * 10 + int(char)
+            else:
+                currentWord += char
+        
+        return currentWord
+
+"""
+Didn't work
+"""
+
+class Solution:
+    def decodeString(self, s: str) -> str:
+        
+        def helper(s, index):
+            result = ''
+            while index < len(s) and s[index] != ']':
+                if not s[index].isdigit():
+                    result += s[index]
+                else:
+                    k = 0
+                    
+                    while index < len(s) and s[index].isdigit():
+                        k = k * 10 + int(s[index])
+                        index += 1
+                        
+                    index += 1 # skip [
+                    decodedString = helper(s, index)
+                    index += 1 # skip ]
+                    
+                    while k > 0:
+                        result += decodedString
+                        k -= 1
+                        
+                index += 1
+            
+            return result
+                
+        return helper(s, 0)
+
