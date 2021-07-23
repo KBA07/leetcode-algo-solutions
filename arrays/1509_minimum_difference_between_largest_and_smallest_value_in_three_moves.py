@@ -73,3 +73,18 @@ class Solution:
             result = min(result, end[len(end) - 4 + index] - start[index])   
         
         return result
+
+"""
+Runtime: 376 ms, faster than 32.84% of Python3 online submissions for Minimum Difference Between Largest and Smallest Value in Three Moves.
+Memory Usage: 24.2 MB, less than 43.05% of Python3 online submissions for Minimum Difference Between Largest and Smallest Value in Three Moves.
+"""
+class Solution:
+    def minDifference(self, nums: List[int]) -> int:
+        if len(nums) < 5: # len = 4 and below, in that case we can sink all to get 0
+            return 0
+        
+        result = float('inf')
+        for index in range(4):
+            result = min(result, heapq.nlargest(4, nums)[3 - index] - heapq.nsmallest(4, nums)[index])   
+        
+        return result
