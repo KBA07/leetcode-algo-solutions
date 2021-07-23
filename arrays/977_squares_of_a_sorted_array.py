@@ -52,4 +52,29 @@ class Solution:
         
         nums.sort()
         return nums
+
+
+"""
+Runtime: 252 ms, faster than 34.99% of Python3 online submissions for Squares of a Sorted Array.
+Memory Usage: 16.2 MB, less than 30.48% of Python3 online submissions for Squares of a Sorted Array.
+"""
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        result = [0] * len(nums)
         
+        index = len(nums) - 1
+        i = 0
+        j = index
+        
+        while index > -1:
+            if abs(nums[i]) > abs(nums[j]):
+                mark = nums[i]
+                i += 1
+            else:
+                mark = nums[j]
+                j -= 1
+            
+            result[index] = mark ** 2
+            index -= 1
+        
+        return result
