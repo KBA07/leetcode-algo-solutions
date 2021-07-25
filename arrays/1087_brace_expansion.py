@@ -98,4 +98,3 @@ class Solution:
         result.sort()
         return result
             
-        # print(result, multiplier)
