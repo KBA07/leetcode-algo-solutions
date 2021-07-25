@@ -63,4 +63,21 @@ class Solution:
             j += 1
         
         return i == m and j == n
+
+
+"""
+Runtime: 72 ms, faster than 64.77% of Python3 online submissions for Validate Stack Sequences.
+Memory Usage: 14.5 MB, less than 58.67% of Python3 online submissions for Validate Stack Sequences.
+"""
+class Solution:
+    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
         
+        stack = [] 
+        j = 0
+        for num in pushed:
+            stack.append(num)
+            while stack and stack[-1] == popped[j]:
+                stack.pop()
+                j += 1
+        
+        return not stack
