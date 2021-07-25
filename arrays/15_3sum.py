@@ -80,4 +80,44 @@ class Solution:
                 twoSum(index + 1, high, num)
             
         return result
+
+
+"""
+Runtime: 896 ms, faster than 66.09% of Python3 online submissions for 3Sum.
+Memory Usage: 18 MB, less than 26.15% of Python3 online submissions for 3Sum.
+"""
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        
+        if not nums:
+            return nums
+        
+        nums.sort()
+        
+        def twoSum(i, num):
+            nums_set = set()
+            j = i
+            while j < len(nums):
+                target = - num - nums[j]
+                
+                if target in nums_set:
+                    result.append([num, nums[j], target])
+                    
+                    while j + 1 < len(nums) and nums[j] == nums[j + 1]:
+                        j += 1
+                
+                nums_set.add(nums[j])
+                j += 1
+        
+        for index, num in enumerate(nums):
+            
+            if num > 0:
+                # This means that we have reached a positive side, and can't get 0
+                break
+            
+            if index == 0 or nums[index - 1] != nums[index]:
+                twoSum(index + 1, num)
+            
+        return result
        
