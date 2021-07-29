@@ -67,4 +67,29 @@ class Solution:
                 province += 1
         
         return province
+
+"""
+Runtime: 296 ms, faster than 17.71% of Python3 online submissions for Number of Provinces.
+Memory Usage: 14.5 MB, less than 89.17% of Python3 online submissions for Number of Provinces.
+"""
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
         
+        visited = [0] * len(isConnected)
+        bucket_list = []
+        province = 0
+        for city in range(len(visited)):
+            
+            if not visited[city]:
+                bucket_list.append(city)
+                
+                while bucket_list:
+                    current_city = bucket_list.pop(0)
+                    visited[current_city] = 1
+                    
+                    for dest in range(len(isConnected)):
+                        if isConnected[current_city][dest] and not visited[dest]:
+                            bucket_list.append(dest)
+                
+                province += 1
+        return province
