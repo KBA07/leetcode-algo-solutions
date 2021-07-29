@@ -122,3 +122,26 @@ class Solution:
         
         dfs(n, [], 1)
         return answer
+
+"""
+Runtime: 24 ms, faster than 97.60% of Python3 online submissions for Combination Sum III.
+Memory Usage: 14.3 MB, less than 27.69% of Python3 online submissions for Combination Sum III.
+"""
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        
+        answer = []
+        def dfs(n, curr_list, start):
+            
+            if n < 0 or len(curr_list) > k:
+                return
+            
+            if n == 0 and len(curr_list) == k:
+                answer.append(curr_list)
+                return
+             
+            for num in range(start, 10):
+                dfs(n - num, curr_list + [num], num + 1)
+        
+        dfs(n, [], 1)
+        return answer
