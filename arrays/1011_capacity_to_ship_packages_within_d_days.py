@@ -83,4 +83,30 @@ class Solution:
                 weights_copy = weights[:]
         
         return avg_weight
-                
+
+"""
+Runtime: 576 ms, faster than 49.72% of Python3 online submissions for Capacity To Ship Packages Within D Days.
+Memory Usage: 17.2 MB, less than 21.19% of Python3 online submissions for Capacity To Ship Packages Within D Days.
+"""
+class Solution:
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        max_weight = sum(weights)
+        min_weight = max(weights)
+        
+        while min_weight < max_weight:
+            mid_weight = (min_weight + max_weight) // 2
+            curr_weight = 0
+            day = 1
+            
+            for weight in weights:
+                if curr_weight + weight > mid_weight:
+                    curr_weight = 0
+                    day += 1
+                curr_weight += weight
+            
+            if day > days: 
+                min_weight = mid_weight + 1
+            else:
+                max_weight = mid_weight
+        
+        return min_weight
