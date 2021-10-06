@@ -53,3 +53,21 @@ class Solution:
             nums_set.add(num)
         
         return list(res)
+
+"""
+Runtime: 364 ms, faster than 69.86% of Python3 online submissions for Find All Duplicates in an Array.
+Memory Usage: 21.8 MB, less than 52.27% of Python3 online submissions for Find All Duplicates in an Array.
+"""
+class Solution:
+    def findDuplicates(self, nums: List[int]) -> List[int]:
+        res = []
+        
+        for num in nums:
+            curr_num = abs(num)
+            if nums[curr_num - 1] < 0:
+                res.append(curr_num)
+            else:
+                nums[curr_num - 1] = -1 *  abs(nums[curr_num - 1])
+        
+        return res
+        
