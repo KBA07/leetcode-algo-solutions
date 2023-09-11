@@ -96,3 +96,4 @@ class Solution:
 
         result.reverse()
         return ''.join(str(binary) for binary in result)
+
