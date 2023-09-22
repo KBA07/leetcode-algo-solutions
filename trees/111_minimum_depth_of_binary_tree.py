@@ -64,4 +64,3 @@ class Solution:
             return 1 + ld
 
         return 1 + min(ld, rd)
-        
